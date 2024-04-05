@@ -48,6 +48,7 @@ main {
   background: rgb(12, 99, 126);
   border-radius: 5px;
   margin-left: 1%;
+  overflow: auto; /* Add overflow property */
 }
 .starred-wrapper {
   width: 65%;
@@ -71,7 +72,8 @@ main {
   margin-right: 1%;
 }
 table {
-  width: 100%;
+  width: 100%; /* Adjusted to 100% to ensure table fills its container */
+  table-layout: fixed; /* Set table layout to fixed */
   border-collapse: collapse;
 }
 
@@ -83,6 +85,9 @@ th,
 td {
   padding: 8px;
   border: 1px solid #ddd;
+  white-space: nowrap; /* Prevent line breaks */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Show ellipsis for overflow text */
 }
 
 tr:nth-child(even) {

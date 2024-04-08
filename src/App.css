@@ -37,7 +37,7 @@ main {
 }
 .mid-layer {
   width: 100%;
-  flex-grow: 1;
+  height: 35%;
   display: flex;
   gap: 5%;
   align-items: center;
@@ -48,18 +48,19 @@ main {
   background: rgb(12, 99, 126);
   border-radius: 5px;
   margin-left: 1%;
-  overflow: auto; /* Add overflow property */
+  overflow: auto;
 }
 .starred-wrapper {
   width: 65%;
-  height: 90%;
-  background: rgb(12, 99, 126);
+  height: 80%;
   border-radius: 5px;
-  margin-right: 1%;
+  background: rgb(12, 99, 126);
+  margin-left: 1%;
+  overflow: auto;
 }
 .bottom-layer {
   width: 100%;
-  flex-grow: 1;
+  height: 25%;
   display: flex;
   align-items: center;
 }
@@ -70,10 +71,11 @@ main {
   border-radius: 5px;
   margin-left: 1%;
   margin-right: 1%;
+  overflow: auto;
 }
 table {
-  width: 100%; /* Adjusted to 100% to ensure table fills its container */
-  table-layout: fixed; /* Set table layout to fixed */
+  width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
 }
 
@@ -85,9 +87,9 @@ th,
 td {
   padding: 8px;
   border: 1px solid #ddd;
-  white-space: nowrap; /* Prevent line breaks */
-  overflow: hidden; /* Hide overflow */
-  text-overflow: ellipsis; /* Show ellipsis for overflow text */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 tr:nth-child(even) {

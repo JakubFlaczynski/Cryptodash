@@ -1,21 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { fetchCoinData } from "./api";
 
-export default function Coin({ setSelectedCoin, addFavoriteCoin }) {
-  const [coinData, setCoinData] = useState([]);
+export default function Coin({ setSelectedCoin, addFavoriteCoin, coinData }) {
+  const [filteredCoinData, setFilteredCoinData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchCoinData();
-      setCoinData(data);
-    };
-
-    fetchData();
-
-    const intervalId = setInterval(fetchData, 100);
-
-    return () => clearInterval(intervalId);
-  }, []);
+    setFilteredCoinData(coinData);
+  }, [coinData]);
 
   const handleRowClick = (coin) => {
     setSelectedCoin(coin);
@@ -25,12 +16,19 @@ export default function Coin({ setSelectedCoin, addFavoriteCoin }) {
     const updatedCoinData = coinData.map((coin) =>
       coin.id === coinId ? { ...coin, favorited: event.target.checked } : coin
     );
-    setCoinData(updatedCoinData);
 
-    const selectedCoin = coinData.find((coin) => coin.id === coinId);
+    const selectedCoin = updatedCoinData.find((coin) => coin.id === coinId);
     if (selectedCoin && event.target.checked) {
       addFavoriteCoin(selectedCoin);
     }
+  };
+
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+    const filtered = coinData.filter((coin) =>
+      coin.name.toLowerCase().includes(event.target.value.toLowerCase())
+    );
+    setFilteredCoinData(filtered);
   };
 
   return (
@@ -47,7 +45,7 @@ export default function Coin({ setSelectedCoin, addFavoriteCoin }) {
         </tr>
       </thead>
       <tbody>
-        {coinData.map((coin) => (
+        {filteredCoinData.map((coin) => (
           <tr key={coin.id} onClick={() => handleRowClick(coin)}>
             <td>{coin.rank}</td>
             <td>{coin.symbol}</td>

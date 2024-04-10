@@ -99,3 +99,6 @@ tr:nth-child(even) {
 tr:hover {
   background-color: #63d4c5;
 }
+input {
+  border-radius: 16px;
+}

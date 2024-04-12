@@ -13,7 +13,7 @@ export default function Piechart() {
 
     fetchData();
 
-    const intervalId = setInterval(fetchData, 100);
+    const intervalId = setInterval(fetchData, 6000);
 
     return () => clearInterval(intervalId);
   }, []);

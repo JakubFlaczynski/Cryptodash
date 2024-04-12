@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Coin from "./Coinlist";
 import Piechart from "./Piechart";
 import InspectedCoin from "./CoinInspect";
 import FavoriteCoin from "./FavoriteCoin";
 import { fetchCoinData } from "./api";
+import BlankPage from "./BlankPage";
+import BlankPageButton from "./BlankPageButton";
 
 function App() {
   const [selectedCoin, setSelectedCoin] = useState(null);
@@ -40,43 +43,54 @@ function App() {
   );
 
   return (
-    <main>
-      <div className="top-layer">
-        <div className="coinlist-wrapper">
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={handleSearch}
-          />
-          <Coin
-            coinData={filteredCoinData}
-            setSelectedCoin={setSelectedCoin}
-            addFavoriteCoin={addFavoriteCoin}
-          />
+    <BrowserRouter>
+      <main>
+        <div className="top-layer">
+          <div className="coinlist-wrapper">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={handleSearch}
+            />
+            <BlankPageButton />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Coin
+                    coinData={filteredCoinData}
+                    setSelectedCoin={setSelectedCoin}
+                    addFavoriteCoin={addFavoriteCoin}
+                  />
+                }
+              />
+              <Route path="/blankpage" element={<BlankPage />} />
+            </Routes>
+          </div>
+          <div className="marketshare-wrapper">
+            <Piechart></Piechart>
+          </div>
         </div>
-        <div className="marketshare-wrapper">
-          <Piechart></Piechart>
+        <div className="mid-layer">
+          <div className="coindata-wrapper">
+            <InspectedCoin selectedCoin={selectedCoin}></InspectedCoin>
+          </div>
+          <div className="starred-wrapper">
+            <FavoriteCoin favoriteCoins={favoriteCoins}></FavoriteCoin>
+          </div>
         </div>
-      </div>
-      <div className="mid-layer">
-        <div className="coindata-wrapper">
-          <InspectedCoin selectedCoin={selectedCoin}></InspectedCoin>
+        <div className="bottom-layer">
+          <div className="graph-wrapper">
+            <Coin
+              coinData={filteredCoinData}
+              setSelectedCoin={setSelectedCoin}
+              addFavoriteCoin={addFavoriteCoin}
+            />
+          </div>
         </div>
-        <div className="starred-wrapper">
-          <FavoriteCoin favoriteCoins={favoriteCoins}></FavoriteCoin>
-        </div>
-      </div>
-      <div className="bottom-layer">
-        <div className="graph-wrapper">
-          <Coin
-            coinData={filteredCoinData}
-            setSelectedCoin={setSelectedCoin}
-            addFavoriteCoin={addFavoriteCoin}
-          />
-        </div>
-      </div>
-    </main>
+      </main>
+    </BrowserRouter>
   );
 }
 

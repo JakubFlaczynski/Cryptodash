@@ -5,7 +5,11 @@ const BlankPageButton = () => {
     window.location.href = "/BlankPage";
   };
 
-  return <button onClick={handleClick}>Go to Blank Page</button>;
+  return (
+    <button className="page-button" onClick={handleClick}>
+      Go to Blank Page
+    </button>
+  );
 };
 
 export default BlankPageButton;

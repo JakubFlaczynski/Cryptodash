@@ -99,6 +99,22 @@ tr:nth-child(even) {
 tr:hover {
   background-color: #63d4c5;
 }
-input {
+
+.search-wrapper {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.search-wrapper input {
+  width: 87%;
+  height: 35px;
+  border-radius: 16px;
+  text-align: center;
+}
+.page-button {
+  height: 35px;
+  width: 10%;
   border-radius: 16px;
 }

@@ -8,6 +8,7 @@ import FavoriteCoin from "./FavoriteCoin";
 import { fetchCoinData } from "./api";
 import BlankPage from "./BlankPage";
 import BlankPageButton from "./BlankPageButton";
+import LiveCoin from "./LiveCoinlist";
 
 function App() {
   const [selectedCoin, setSelectedCoin] = useState(null);
@@ -45,15 +46,17 @@ function App() {
   return (
     <BrowserRouter>
       <main>
+        <div className="search-wrapper">
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+          <BlankPageButton />
+        </div>
         <div className="top-layer">
           <div className="coinlist-wrapper">
-            <input
-              type="text"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={handleSearch}
-            />
-            <BlankPageButton />
             <Routes>
               <Route
                 path="/"
@@ -82,7 +85,7 @@ function App() {
         </div>
         <div className="bottom-layer">
           <div className="graph-wrapper">
-            <Coin
+            <LiveCoin
               coinData={filteredCoinData}
               setSelectedCoin={setSelectedCoin}
               addFavoriteCoin={addFavoriteCoin}

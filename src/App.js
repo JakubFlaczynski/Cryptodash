@@ -9,6 +9,7 @@ import { fetchCoinData } from "./api";
 import BlankPage from "./BlankPage";
 import BlankPageButton from "./BlankPageButton";
 import LiveCoin from "./LiveCoinlist";
+import SearchInput from "./SearchInput"; // Import the SearchInput component
 
 function App() {
   const [selectedCoin, setSelectedCoin] = useState(null);
@@ -47,12 +48,8 @@ function App() {
     <BrowserRouter>
       <main>
         <div className="search-wrapper">
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={handleSearch}
-          />
+          {/* Use the SearchInput component */}
+          <SearchInput searchTerm={searchTerm} handleSearch={handleSearch} />
           <BlankPageButton />
         </div>
         <div className="top-layer">

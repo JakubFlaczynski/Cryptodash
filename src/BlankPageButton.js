@@ -7,7 +7,7 @@ const BlankPageButton = () => {
 
   return (
     <button className="page-button" onClick={handleClick}>
-      Go to Blank Page
+      Go to another page
     </button>
   );
 };

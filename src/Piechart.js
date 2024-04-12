@@ -23,7 +23,6 @@ export default function Piechart() {
     for (let i = 0; i < 10 && i < coinData.length; i++) {
       const coin = coinData[i];
       top10Coins.push({
-        id: coin.rank,
         value: coin.marketCapUsd,
         label: coin.name,
       });
@@ -33,6 +32,14 @@ export default function Piechart() {
 
   return (
     <PieChart
+      colors={[
+        "#6699cc",
+        "#99ccff",
+        "#66b3ff",
+        "#3385ff",
+        "#0055ff",
+        "#003d99",
+      ]}
       series={[
         {
           data: chartData(),
